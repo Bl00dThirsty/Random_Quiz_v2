@@ -10,9 +10,9 @@ import logging
 
 
 #{
-#'status' : True
-#'data' : [
-#    {},
+#   'status' : True
+#   'data' : [
+#       {},
 #    
 #    ]
 #}
@@ -27,21 +27,17 @@ def home(request):
 
     return render(request,'home.html', context)
 
-"""
-def quiz(request):
-    current_question = None  
-    context = {'category' : request.GET.get('category'),
-                #'current_question_index': current_question_index,
-            #'current_question': current_question,
-     }
+
+def quiz(request):  
+    context = {'category' : request.GET.get('category')}
 
     return render(request, 'quiz.html', context)
 
 
 
 
-"""
-def quiz(request):
+
+"""def quiz(request):
     if request.method == 'GET':
         category = request.GET.get('category')
 
@@ -74,38 +70,8 @@ def quiz(request):
         pass
 
     # Renvoyer une réponse HTTP appropriée pour toutes les autres conditions
-    return HttpResponse("Méthode HTTP non prise en charge.")
-    
-#==========================================
-    """
+    return HttpResponse("Méthode HTTP non prise en charge.")"""
 
-
-    current_question_index = 0
-    category = request.GET.get('category')
-    
-    try:
-        category_obj = Category.objects.get(category_name=category)
-        questions = Question.objects.filter(category=category_obj)
-        questions = list(questions)
-        
-        if current_question_index >= 0 and current_question_index < len(questions):
-            current_question = questions[current_question_index]
-        else:
-            current_question = None  
-        
-        context = {
-            'category': category,
-            'current_question_index': current_question_index,
-            'current_question': current_question,
-        }
-    
-        return render(request, 'quiz.html', context)
-    
-    except Category.DoesNotExist:
-        return HttpResponse(f"La catégorie '{category}' n'existe pas.")
-    
-    except Exception as e:
-        return HttpResponse("Quelque chose va mal!!!")"""
 
 
 #================================================================
@@ -140,10 +106,14 @@ def get_quiz(request):
 
     except Exception as e:
         print(e)
-    return HttpResponse("Quelque chose va mal!!!")
+    return HttpResponse("Quelque chose va pas!!!")
 
     
-def getQuestions(request):
+
+
+
+#Cela vous permettra de vous assurer que la catégorie est valide avant de continuer.675457214
+"""def getQuestions(request):
     try:
         category_id = request.GET.get('category')
         category = Category.objects.get(id=category_id)
@@ -156,10 +126,7 @@ def getQuestions(request):
         return JsonResponse({'message': 'La catégorie spécifiée n''existe pas.'})
     except Exception as e:
         return JsonResponse({'message': 'Une erreur sest produite lors de la récupération des questions.'})
-
-
-#Cela vous permettra de vous assurer que la catégorie est valide avant de continuer.675457214
-"""def getQuestions(request):
+def getQuestions(request):
     category_id = request.GET.get('category')
     questions = Question.objects.filter(category_id=category_id)
     serialized_questions = [{'question': q.question, 'marks': q.marks} for q in questions]

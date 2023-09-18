@@ -5,5 +5,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('api/get-quiz/', views.get_quiz , name="get_quiz"),
     path('quiz/', views.quiz, name="quiz"),
-    path('get-questions/', views.getQuestions, name='get-questions')
+    #path('get-questions/', views.getQuestions, name='get-questions')
 ]

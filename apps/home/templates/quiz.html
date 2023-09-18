@@ -8,8 +8,6 @@
 
 {% block content %}
 
-
-
     <div id="app">
         <div class="container mt-5 pt-5">
             <div class="col-md-6 mx-auto">
@@ -21,7 +19,7 @@
                 <div class="form-check" v-for="answer in question.answers">
                     <input @change="checkAnswer($event, question.uid)" value="[[answer.answer]]" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                     <label class="form-check-label" for="flexRadioDefault1">
-                      [[answer.answer]]
+                    [[answer.answer]]
                     </label>
 
                 </div>
@@ -33,64 +31,19 @@
     </div>
 
 
-    {% if current_question %}
-    <h2>Question {{ current_question_index + 1 }}</h2>
-    <p>{{ current_question.question_text }}</p>
-    <!-- Ajoutez ici les éléments pour la réponse à la question -->
-    {% else %}
-        <p>Il n'y a plus de questions.</p>
-    {% endif %}
+
     {% endblock content %}
     
     
-    <form method="post" action="{% url 'quiz' %}">
-        {% csrf_token %}
-        <input type="hidden" name="category" value="{{ category }}">
-        <input type="hidden" name="current_question_index" value="{{ current_question_index + 1 }}">
-        <button type="submit">Suivant</button>
-    </form>
+    
    
 
 
 {% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 
 
-    
 
-
-<!--<script>
-//============================================================================================================================
-// Récupérer les données du quiz au format JSON
-        fetch('/get_quiz/')
-        .then(response => response.json())
-        .then(data => {
-            // Stocker les questions dans une variable
-            const questions = data.data;
-            let currentQuestionIndex = 0; // Indice de la question actuelle
-
-            // Fonction pour afficher la question suivante
-            function afficherQuestionSuivante() {
-            if (currentQuestionIndex < questions.length) {
-                const question = questions[currentQuestionIndex];
-                // Afficher la question dans votre interface
-                // ...
-                currentQuestionIndex++; // Passer à la question suivante
-            } else {
-                // Toutes les questions ont été affichées
-                // Faire quelque chose quand le quiz est terminé
-                // ...
-            }
-            }
-
-            // Écouter l'événement du bouton "suivant"
-            const boutonSuivant = document.getElementById('bouton-suivant');
-            boutonSuivant.addEventListener('click', afficherQuestionSuivante);
-        })
-        .catch(error => {
-            console.error('Une erreur s\'est produite lors de la récupération des données du quiz:', error);
-        });
-</script>-->
 <script>
         var app = new Vue({
     
@@ -100,17 +53,11 @@
                 return {
                     category : '{{category}}',
                     questions : [],
-                    currentQuestionIndex: 0,
-                    message: '' // Ajoutez cette ligne
                 }
             },
 
 
-            computed: {
-                currentQuestionNumber() {
-                    return this.currentQuestionIndex + 1;
-                },
-            },
+            
             methods: {
         // ...
                 getQuestions() {
@@ -141,9 +88,6 @@
     
                     console.log(event.target.value, uid)
                 },
-                getCurrentQuestionNumber() {
-                    return this.currentQuestionIndex + 1;
-                }
     
     },
            //methods : {
