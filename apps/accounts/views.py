@@ -33,5 +33,5 @@ def signup(request, *args, **kwargs):
             return redirect('home')
     
        
-    return render(request, 'accounts/signup.html')
+    return render(request, 'accounts/signup.html')#1
 # Create your views here.

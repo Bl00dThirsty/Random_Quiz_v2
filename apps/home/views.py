@@ -25,55 +25,10 @@ def home(request):
     if request.GET.get('category'):
         return redirect(f"/quiz/?category={request.GET.get('category')}")
 
-    return render(request,'home.html', context)
+    return render(request,'home/home.html', context)
+def quiz(request):
 
-
-def quiz(request):  
-    context = {'category' : request.GET.get('category')}
-
-    return render(request, 'quiz.html', context)
-
-
-
-
-
-"""def quiz(request):
-    if request.method == 'GET':
-        category = request.GET.get('category')
-
-        try:
-            category_obj = Category.objects.get(category_name=category)
-            questions = Question.objects.filter(category=category_obj)
-            questions = list(questions)
-
-            if questions:
-                current_question_index = 0
-                current_question = questions[current_question_index]
-                context = {
-                    'category': category,
-                    'current_question_index': current_question_index,
-                    'current_question': current_question,
-                }
-                return render(request, 'quiz.html', context)
-            else:
-                return HttpResponse("Aucune question trouvée pour cette catégorie.")
-
-        except Category.DoesNotExist:
-            return HttpResponse(f"La catégorie '{category}' n'existe pas.")
-
-        except Exception as e:
-            logging.exception("Une erreur s'est produite dans la vue quiz.")
-            return HttpResponse("Quelque chose va mal!!!")
-
-    elif request.method == 'POST':
-        # Logique pour gérer les requêtes POST (passage à la question suivante)
-        pass
-
-    # Renvoyer une réponse HTTP appropriée pour toutes les autres conditions
-    return HttpResponse("Méthode HTTP non prise en charge.")"""
-
-
-
+    return render(request,'quiz/quiz.html')
 #================================================================
     
 
