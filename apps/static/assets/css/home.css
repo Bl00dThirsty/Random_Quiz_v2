@@ -1,0 +1,134 @@
+@import url();
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    }
+    body {
+        
+        
+        overflow: hidden;
+        background: url('sai-i-lama-parallax-01.jpg') no-repeat;
+        background-size: cover;
+        background-position: center;
+        pointer-events: auto;
+        transition: .3s ease;
+        width: 100%;
+        padding-bottom: 0%;
+        position: relative;
+    }
+   
+    .container{
+        
+        position: relative;
+    
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    }
+
+    .home {
+        position: relative;
+        background: transparent;
+        height: 70vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        border-radius: 10px;  
+    }
+    
+    .home-content {
+        max-width: 1000px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .home-content h3 {
+        font-size: 40px;
+        font-weight: 700;
+        text-shadow: 2px 2px 2px #c40094;
+        margin-bottom: 50px;
+        color:  #fff;
+        text-align: center;
+        
+        
+    }
+    
+    .form-group {
+        width: 100%;
+        padding: 32px;
+        background: #fff;
+        border: 2px solid #c40094;
+        border-radius: 24px;
+        font-size: 17px;
+        margin: 50px 20px;
+        cursor: pointer;
+        transition: .3s;
+        box-shadow: 2px 2px 2px #c40094;
+        align-items: center;
+    }
+
+  
+    .select{
+        background: #fff;
+        color: #fff;
+        font-size: 10px;
+    }
+
+    .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 45px;
+    background: #c40094;
+    border: 2px solid #c40094;
+    outline: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    transition: .5s;
+
+    }
+
+    .btn:hover{
+        background: #fff;
+        color: #c40094;
+    }
+    
+    @media screen and (max-width: 800px) and (min-width: 300px){
+        .home {
+            width: 120%;
+            height: 50vh;
+        }
+        .form-group {
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #c40094;
+            border-radius: 24px;
+            font-size: 17px;
+            margin: 30px 15px;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 2px 2px 2px #c40094;
+            align-items: center;
+        }
+        .home-content h3 {
+            font-size: 20px;
+            
+        }
+
+    }

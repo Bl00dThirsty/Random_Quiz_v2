@@ -13,6 +13,7 @@ def signup(request, *args, **kwargs):
         email = request.POST['email']
         phone_number = request.POST['phone_number']
         password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
     #.signup != .create
         saved_name = request.session.get('name')
         saved_forename = request.session.get('forename')
@@ -23,13 +24,14 @@ def signup(request, *args, **kwargs):
 
         if Candidat.objects.filter(name=name, forename=forename, date=date).exists():
             message_erreur = "Vous avez deja passer le test."
-            return render(request, 'accounts/signup.html', {'message_erreur': message_erreur})
+            #return render(request, 'accounts/signup.html', {'message_erreur': message_erreur})
+            return redirect('error')
 
         else:
             newCandidat = Candidat(name=name, forename=forename, date=date, email=email, phone_number=phone_number, password=password)
             newCandidat.save()
-            return redirect('index')
+            return redirect('home')
     
        
-    return render(request, 'templates/accounts/signup.html')
+    return render(request, 'accounts/signup.html')
 # Create your views here.

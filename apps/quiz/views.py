@@ -6,4 +6,8 @@ def index(request):
 
 
     
-    return render(request, 'templates/quiz/index.html')
+    return render(request, 'quiz/index.html')
+
+def error(request):
+    return render(request, 'quiz/error.html')
+ 
