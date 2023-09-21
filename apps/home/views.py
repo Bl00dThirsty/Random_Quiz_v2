@@ -8,15 +8,7 @@ import json
 import logging
 
 
-
-#{
-#   'status' : True
-#   'data' : [
-#       {},
-#    
-#    ]
-#}
-
+#================================================================
 def home(request):
 
     context = {'categories': Category.objects.all()}
@@ -26,11 +18,36 @@ def home(request):
         return redirect(f"/quiz/?category={request.GET.get('category')}")
 
     return render(request,'home/home.html', context)
+
+
+
+
+#================================================================
 def quiz(request):
 
     return render(request,'quiz/quiz.html')
+
+
+
 #================================================================
+def submit_quiz(request):
+    if request.method == 'POST':
+        
+        submitted_answers = request.POST.getlist('answers')
+
+        
+        total_score = 0
+        for answer_id in submitted_answers:
+            answer = Answer.objects.get(pk=answer_id)
+            if answer.is_correct:
+                total_score += answer.question.marks
+
+        # Afficher le score à l'utilisateur
+        return render(request, 'quiz/score.html', {'score': total_score})
+
     
+    return redirect('quiz')
+
 
 def get_quiz(request):
     try:
@@ -56,7 +73,8 @@ def get_quiz(request):
             })
 
         payload = {'status' : True, 'data' : data}
-        
+  #Cette vue renverra un objet JSON contenant les questions correspondantes à la catégorie sélectionnée.  
+  #Cela vous permettra de vous assurer que la catégorie est valide avant de continuer.    
         return JsonResponse(payload)
 
     except Exception as e:
@@ -67,25 +85,5 @@ def get_quiz(request):
 
 
 
-#Cela vous permettra de vous assurer que la catégorie est valide avant de continuer.675457214
-"""def getQuestions(request):
-    try:
-        category_id = request.GET.get('category')
-        category = Category.objects.get(id=category_id)
-        questions = Question.objects.filter(category=category)
-        if not questions:
-            return JsonResponse({'message': 'Aucune question disponible pour cette catégorie.'})
-        serialized_questions = [{'question': q.question, 'marks': q.marks} for q in questions]
-        return JsonResponse({'questions': serialized_questions})
-    except Category.DoesNotExist:
-        return JsonResponse({'message': 'La catégorie spécifiée n''existe pas.'})
-    except Exception as e:
-        return JsonResponse({'message': 'Une erreur sest produite lors de la récupération des questions.'})
-def getQuestions(request):
-    category_id = request.GET.get('category')
-    questions = Question.objects.filter(category_id=category_id)
-    serialized_questions = [{'question': q.question, 'marks': q.marks} for q in questions]
-    return JsonResponse({'questions': serialized_questions})"""
 
 
-#Cette vue renverra un objet JSON contenant les questions correspondantes à la catégorie sélectionnée.

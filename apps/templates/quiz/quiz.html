@@ -2,32 +2,39 @@
 
 {% block title %}  Quiz{% endblock %} 
 
-<!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+<!-- Specific Page CSS goes HERE<link rel="stylesheet" href="/static/assets/css/quiz.css">  -->
+{% block stylesheets %}
+{{ block.super }}
+
+{% endblock stylesheets %}
 
 
 {% block content %}
-
-<div id="app">
-    <div class="container mt-5 pt-5">
-      <div class="col-md-6 mx-auto">
-        <hr>
-        <p>[[currentQuestion.question]]</p>
-        <div class="form-check" v-for="answer in currentQuestion.answers">
-          <input @change="checkAnswer($event, currentQuestion.uid)" :value="answer.answer" class="form-check-input" type="radio" name="flexRadioDefault" :id="answer.id">
-          <label class="form-check-label" :for="answer.id">
-            [[answer.answer]]
-          </label>
-        </div>
-        <hr>
+  <div id="app">
+      <div class="container">
+        <section class="quiz-section">
+          <div class="timer">
+            <div class="progress">
+              <div class="progress-bar">
+                <span class="progress-text"></span>
+              </div>
+            </div>
+          </div>
+          <div class="quiz-box">
+              <p>[[currentQuestion.question]]</p>
+                <div class="form-check" v-for="answer in currentQuestion.answers">
+                  <input @change="checkAnswer($event, currentQuestion.uid)" :value="answer.answer" class="form-check-input" type="radio" name="flexRadioDefault" :id="answer.id" :disabled="currentQuestion.answered">
+                  [[answer.answer]]
+                </div>
+              </div>
+            
+            </section>
+            <button @click="nextQuestion">Suivant</button>
       </div>
-    </div>
-    <button @click="nextQuestion">Suivant</button>
+      
   </div>
-
-
-
-    {% endblock content %}
+      
+  {% endblock %}
     
     
     
@@ -61,12 +68,14 @@
                 }
                 });
             },
+        
         checkAnswer(event, uid) {
-          this.questions.map(question => {
-            answers = question.answers;
-            for (var i = 0; i < answers.length; i++) {
-              if (answers[i].answer == event.target.value) {
-                if (answers[i].is_correct) {
+          this.questions.forEach(question => {
+            if (question.uid === uid && !question.answered) {
+              question.answered = true;
+              const selectedAnswer = question.answers.find(answer => answer.answer === event.target.value);
+              if (selectedAnswer) {
+                if (selectedAnswer.is_correct) {
                   console.log('reponse juste');
                   alert('hurrrr correcte');
                 } else {
@@ -75,8 +84,6 @@
               }
             }
           });
-    
-          console.log(event.target.value, uid);
         },
         nextQuestion() {
             const currentIndex = this.questions.indexOf(this.currentQuestion);
@@ -85,10 +92,11 @@
             this.currentQuestion = this.questions[nextIndex];
             }
         },
+        
       },
       created() {
         this.getQuestions();
       }
     });
     </script>
-    {% endblock javascripts %}
+  {% endblock javascripts %}
