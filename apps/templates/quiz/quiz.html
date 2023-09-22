@@ -1,16 +1,25 @@
 {% extends "layouts/base.html" %}
+{% load static %}
 
 {% block title %}  Quiz{% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<link  rel="stylesheet" type="text/css" media="all" href="{% static 'assets/css/style.css' %}" />
+{% endblock stylesheets %}
 
 
 {% block content %}
-
+<main>
 <div id="app">
     <div class="container mt-5 pt-5">
       <div class="col-md-6 mx-auto">
+        <div class="quiz-header">
+              <div class="timer">
+                  <div class="time_text">Time</div>
+                  <div class="timer_sec">15</div>
+              </div> 
+        </div>
         <hr>
         <p>[[currentQuestion.question]]</p>
         <div class="form-check" v-for="answer in currentQuestion.answers">
@@ -24,7 +33,7 @@
     </div>
     <button @click="nextQuestion">Suivant</button>
   </div>
-
+</main>
 
 
     {% endblock content %}
@@ -91,4 +100,5 @@
       }
     });
     </script>
+     <script src="{% static 'assets/js/quiz.js' %}"></script>
     {% endblock javascripts %}
