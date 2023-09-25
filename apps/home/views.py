@@ -81,7 +81,7 @@ def get_quiz(request):
 
     except Exception as e:
         print(e)
-    return HttpResponse("Quelque chose va pas!!!")
+    return HttpResponse("Quelque chose ne va pas!!!")
 
     
 
