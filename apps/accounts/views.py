@@ -9,7 +9,7 @@ def signup(request, *args, **kwargs):
     if request.method == 'POST':
         name = request.POST['name']
         forename = request.POST['forename']
-        code = request.POST['code']
+        
         date = request.POST['date']
         email = request.POST['email']
         phone_number = request.POST['phone_number']
