@@ -7,11 +7,11 @@ from django.shortcuts import redirect
 def signup(request, *args, **kwargs):
 
     if request.method == 'POST':
+
         name = request.POST['name']
         forename = request.POST['forename']
-        
+        code = request.POST['code']
         date = request.POST['date']
-        email = request.POST['email']
         phone_number = request.POST['phone_number']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
@@ -30,9 +30,10 @@ def signup(request, *args, **kwargs):
             return redirect('error')
 
         else:
-            newCandidat = Candidat(name=name, forename=forename, code=code,  date=date, email=email, phone_number=phone_number, password=password)
+            newCandidat = Candidat(name=name, forename=forename, code=code,  date=date, phone_number=phone_number, password=password)
             newCandidat.save()
             return redirect('home')
+            print(newCandidat.matricule)
     
        
     return render(request, 'accounts/signup.html')#1
