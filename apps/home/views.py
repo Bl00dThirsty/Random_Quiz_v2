@@ -24,12 +24,13 @@ def home(request):
 
 #================================================================
 def quiz(request):
+    
+    context = {'category': request.GET.get('category')}
 
-    return render(request,'quiz/quiz.html')
-
-
+    return render(request,'quiz/quiz.html', context)
 
 #================================================================
+"""
 def submit_quiz(request):
     if request.method == 'POST':
         
@@ -39,7 +40,7 @@ def submit_quiz(request):
         total_score = 0
         for answer_id in submitted_answers:
             answer = Answer.objects.get(pk=answer_id)
-            if answer.is_correct:
+            if answer.is_correct:.
                 total_score += answer.question.marks
 
         # Afficher le score à l'utilisateur
@@ -47,6 +48,7 @@ def submit_quiz(request):
 
     
     return redirect('quiz')
+    """
 
 
 def get_quiz(request):
