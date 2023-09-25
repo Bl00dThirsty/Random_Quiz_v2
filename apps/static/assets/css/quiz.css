@@ -11,7 +11,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #dddfeb;
+    background: url('sai-i-lama-parallax-01.jpg') no-repeat;
 }
 
 .container {
