@@ -21,6 +21,8 @@
                 <span class="progress-text"><!-- <p>Score total: {{ score }}</p>--></span>
               </div>
             </div>
+            <div class="time_text">Time</div>
+            <div class="timer_sec">15</div>
           </div>
           <div class="quiz-box">
               <p>[[currentQuestion.question]]</p>
@@ -32,7 +34,7 @@
             </div>
             
             </section>
-            <button @click="nextQuestion">Suivant</button>
+            <button @click="nextQuestion" class="next-btn">Suivant</button>
       </div>
       
   </div>
@@ -46,6 +48,8 @@
 
     {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script src="{% static 'assets/js/quiz.js' %}"></script>
     
     <script>
     var app = new Vue({
