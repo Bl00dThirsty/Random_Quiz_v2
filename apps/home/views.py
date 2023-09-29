@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 from .models import *
 from . import views
 import random
 import json
 import logging
 
-
+@login_required
 #================================================================
 def home(request):
 
@@ -21,7 +22,7 @@ def home(request):
 
 
 
-
+@login_required
 #================================================================
 def quiz(request):
     

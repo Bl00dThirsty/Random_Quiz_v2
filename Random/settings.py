@@ -79,6 +79,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Random.wsgi.application'
 
+LOGIN_URL = 'signup'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
