@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import Candidat
 from django.shortcuts import redirect
-
+from django.contrib.auth import login
+from django.contrib.auth.models import User
 
 
 def signup(request, *args, **kwargs):
@@ -32,8 +33,12 @@ def signup(request, *args, **kwargs):
         else:
             newCandidat = Candidat(name=name, forename=forename, code=code,  date=date, phone_number=phone_number, password=password)
             newCandidat.save()
-            return redirect('home')
-            print(newCandidat.matricule)
+            newCandidat = User.objects.create_user(name, code, password)
+            if newCandidat:
+                login(request, newCandidat)
+                return redirect('home')
+            else:
+                print('error')
     
        
     return render(request, 'accounts/signup.html')#1
