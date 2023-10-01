@@ -38,8 +38,7 @@
             CinetPay.waitResponse(function(data) {
                 if (data.status == "REFUSED") {
                     alert("Erreur de transaction ou solde insuffisant");
-                        //window.location.reload();
-                        window.location.href = "../quiz";
+                        window.location.reload();
                     
                 } else if (data.status == "ACCEPTED") {
                     alert("Votre paiement a été effectué avec succès");
@@ -58,20 +57,16 @@
     <main class="main">
           
         <header class="header">
-            <h1><div class="col-xs-12">
-                <div id="logo">
-                    <a>
-                        <img class="normal_logo" src="{% static 'assets/img/PRÉSENTATION 4G1.png' %}" alt="image"
-                                             title="" style="max-height:90px;"/> 
-                    </a>
+            <h1>
+                <div class="col-xs-12">
+                    <div id="logo">
+                        <a>
+                            <img class="normal_logo" src="{% static 'assets/img/PRÉSENTATION 4G1.png' %}" alt="image"
+                                                title="" style="max-height:90px;"/> 
+                        </a>
+                    </div>
                 </div>
-            </div></h1>
-           <!-- <nav class="navbar">
-                <a href="#" class="active"></a>
-               <a href="#">A propops</a>
-                <a href="#">service</a>
-                <a href="#">Support</a>
-            </nav>-->
+            </h1>
             
         </header>
            <div class="container">
