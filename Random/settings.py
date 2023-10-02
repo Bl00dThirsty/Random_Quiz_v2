@@ -80,6 +80,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Random.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -135,3 +136,7 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'signup'
+
+SESSION_COOKIE_AGE = 1800
