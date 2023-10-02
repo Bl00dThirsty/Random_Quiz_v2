@@ -64,8 +64,8 @@ body {
 }
 
 
-.quiz-box {
-    color: #a2aace;
+/**.quiz-box {
+    color: #1c34a0;
     font-size: 25px;
     font-weight: 200;
     margin-bottom: 20px;
@@ -91,5 +91,39 @@ body {
     justify-content: space-between;
     margin-bottom: 20px;
     cursor: pointer;
-    transition: 0.3s linear;
-}
+    
+}**/
+
+.quiz-box {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-box p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .answer-wrapper {
+    margin-top: 10px;
+  }
+  
+  .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .next-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .next-btn:hover {
+    background-color: #45a049;
+  }

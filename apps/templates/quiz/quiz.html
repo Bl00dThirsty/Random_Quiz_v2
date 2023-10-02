@@ -3,10 +3,10 @@
 
 {% block title %}  Quiz{% endblock %} 
 
-<!-- Specific Page CSS goes HERE--><link rel="stylesheet" href="{% static 'assets/css/quiz.css' %}">  
+<!-- Specific Page CSS goes HERE-->
 {% block stylesheets %}
 {{ block.super }}
-
+<link rel="stylesheet" type="text/css" media="all" href="{% static 'assets/css/quiz.css' %}">
 {% endblock stylesheets %}
 
 
@@ -27,7 +27,7 @@
           <div class="quiz-box">
               <p>[[currentQuestion.question]]</p>
               <div class="answer-wrapper">
-                <div class="form-check" v-for="answer in currentQuestion.answers" @change="checkAnswer($event, currentQuestion.uid)" :value="answer.answer"  :id="answer.id">
+                <div class="form-check" v-for="answer in currentQuestion.answers" @click="checkAnswer($event, currentQuestion.uid, answer.answer)" :id="answer.id">
                   [[answer.answer]]
                 </div>
               </div>
@@ -49,7 +49,7 @@
     {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 
-    <script src="{% static 'assets/js/quiz.js' %}"></script>
+    <!--<script src="{% static 'assets/js/quiz.js' %}"></script>-->
     
     <script>
     var app = new Vue({
@@ -76,11 +76,10 @@
                 });
             },
         
-        checkAnswer(event, uid) {
+        checkAnswer(event, uid, selectedAnswer) {
           this.questions.forEach(question => {
-            if (question.uid === uid && !question.answered) {
-              question.answered = true;
-              const selectedAnswer = question.answers.find(answer => answer.answer === event.target.value);
+          if (question.uid === uid && !question.answered) {
+            question.answered = true;
               if (selectedAnswer) {
                 if (selectedAnswer.is_correct) {
                   console.log('reponse juste');
@@ -89,9 +88,14 @@
                   console.log('reponse fausse');
                 }
               }
-            }
+          }
+          if (question.uid !== uid) {
+            question.disabled = true;
+            console.log('desactiver');
+          }
           });
         },
+
         nextQuestion() {
             const currentIndex = this.questions.indexOf(this.currentQuestion);
             const nextIndex = currentIndex + 1;
@@ -105,5 +109,7 @@
         this.getQuestions();
       }
     });
+
+    
     </script>
   {% endblock javascripts %}
