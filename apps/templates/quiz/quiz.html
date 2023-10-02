@@ -15,16 +15,16 @@
     <main class="main">
       <div class="container">
         <section class="quiz-section">
-          <div class="timer">
+         <!--<div class="timer">
             <div class="progress">
               <div class="progress-bar">
                 <span class="progress-text">temps</span>
-                <span class="progress-text"><!-- <p>Score total: {{ score }}</p>--></span>
+                <span class="progress-text"><p>Score total: {{ score }}</p></span>
               </div>
             </div>
-            <!--<div class="time_text">Time</div>
-            <div class="timer_sec">15</div>-->
-          </div>
+            <div class="time_text">Time</div>
+            <div class="timer_sec">15</div>
+          </div>-->
           <div class="quiz-box">
             <h1>sai lama quiz</h1>
               <p>[[currentQuestion.question]]</p>
@@ -68,8 +68,10 @@
 
     {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-    
+
     <script>
+    const quizBox = document.querySelector('.quiz-box');
+    const nextBtn = document.querySelector('.next-btn');
     var app = new Vue({
       el: '#app',
       delimiters: ['[[', ']]'],
