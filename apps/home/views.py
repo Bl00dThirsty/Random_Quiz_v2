@@ -8,8 +8,9 @@ import random
 import json
 import logging
 
-@login_required
+
 #================================================================
+@login_required
 def home(request):
 
     context = {'categories': Category.objects.all()}
@@ -22,7 +23,7 @@ def home(request):
 
 
 
-@login_required
+
 #================================================================
 def quiz(request):
     

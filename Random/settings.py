@@ -139,4 +139,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'signup'
 
-SESSION_COOKIE_AGE = 60
+SESSION_COOKIE_AGE = 1800
