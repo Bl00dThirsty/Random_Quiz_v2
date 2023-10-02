@@ -75,8 +75,7 @@ def get_quiz(request):
             })
 
         payload = {'status' : True, 'data' : data}
-  #Cette vue renverra un objet JSON contenant les questions correspondantes à la catégorie sélectionnée.  
-  #Cela vous permettra de vous assurer que la catégorie est valide avant de continuer.    
+  #Cette vue renverra un objet JSON contenant les questions correspondantes à la catégorie sélectionnée.    
         return JsonResponse(payload)
 
     except Exception as e:

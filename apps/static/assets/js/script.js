@@ -42,7 +42,7 @@ nextBtn.onclick = () => {
         questionCounter(questionNumb);
     }
     else {
-        console.log('Question complétée')
+        showResultBox();
     }
     
 }
@@ -109,4 +109,43 @@ function questionCounter(index) {
 function headerScore() {
     const headerScoreText = document.querySelector('.head-score');
     headerScoreText.textContent = `Score: ${userScore} / ${questions.length}`;
+}
+
+function  showResultBox() {
+    quizBox.classList.remove('active');
+    result_box.classList.add('active');
+
+    const score_text = document.querySelector('.score-text');
+    score_text.textContent = `Votre score est de ${userScore} sur ${questions.length}`;
+
+    if(userScore < 5){
+        TryAgain.classList.add('active');
+    }
+    else{
+        TryAgain.classList.remove('active');
+    }
+
+
+
+    const circularProgress = document.querySelector('.cicular-progress');
+    const progressValue = document.querySelector('.progress-value');
+
+    let progressStartValue = -1;
+    let progressEndValue = (userScore / questions.length) * 100;
+    let speed = 20;
+
+    let progress = setInterval(() => {
+        progressStartValue++;
+        //console.log(progressStartValue);
+        progressValue.textContent = `${progressStartValue}%`;
+        circularProgress.style.background = `conic-gradient(#c40094 ${progressStartValue * 3.6}deg, rgba(255, 255, 255, .1) 0deg)`;
+
+
+        if (progressStartValue == progressEndValue) {
+
+            clearInterval(progress);
+
+        }
+
+    }, speed);
 }

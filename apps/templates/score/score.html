@@ -8,6 +8,69 @@
 {% block content %}
 
 <h1>Votre score est : {{ score }}</h1>
+<main class="main"></main>
+<div class="container">
+<section class="quiz-section">
+    <div class="result-box">
+        <h2>Résultat du test!</h2>
+        <div class="percentage-container">
+            <div class="cicular-progress">
+                <span class="progress-value">0%</span>
+            </div>
+
+            <span class="score-text">Votre score est de {{ score }} sur 10</span>
+        </div>
+
+        <div class="buttons">
+            <button class="TryAgain-btn">Reessayer</button>
+            <button class="goHome-btn">Acceuil</button>
+        </div>
+    </div>
+</section>
+</div>
 
 
 {% endblock content %}
+
+{% javascript content %}
+<script>
+    function  showResultBox() {
+    quizBox.classList.remove('active');
+    result_box.classList.add('active');
+
+    const score_text = document.querySelector('.score-text');
+    score_text.textContent = `Votre score est de ${userScore} sur ${questions.length}`;
+
+    if(userScore < 5){
+        TryAgain.classList.add('active');
+    }
+    else{
+        TryAgain.classList.remove('active');
+    }
+
+
+
+    const circularProgress = document.querySelector('.cicular-progress');
+    const progressValue = document.querySelector('.progress-value');
+
+    let progressStartValue = -1;
+    let progressEndValue = (userScore / questions.length) * 100;
+    let speed = 20;
+
+    let progress = setInterval(() => {
+        progressStartValue++;
+        //console.log(progressStartValue);
+        progressValue.textContent = `${progressStartValue}%`;
+        circularProgress.style.background = `conic-gradient(#c40094 ${progressStartValue * 3.6}deg, rgba(255, 255, 255, .1) 0deg)`;
+
+
+        if (progressStartValue == progressEndValue) {
+
+            clearInterval(progress);
+
+        }
+
+    }, speed);
+}
+</script>
+{% endblock %}
