@@ -10,6 +10,7 @@ import logging
 
 
 #================================================================
+@login_required
 def home(request):
 
     context = {'categories': Category.objects.all()}
