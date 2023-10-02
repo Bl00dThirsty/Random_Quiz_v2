@@ -8,7 +8,7 @@ import random
 import json
 import logging
 
-@login_required
+
 #================================================================
 def home(request):
 
@@ -22,7 +22,7 @@ def home(request):
 
 
 
-@login_required
+
 #================================================================
 def quiz(request):
     
