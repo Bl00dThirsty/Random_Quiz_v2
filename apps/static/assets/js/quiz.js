@@ -1,7 +1,7 @@
 "use strict";
 const quizBox = document.querySelector('.quiz-box');
-    const nextBtn = document.querySelector('.next-btn');
-    var app = new Vue({
+const nextBtn = document.querySelector('.next-btn');
+var app = new Vue({
       el: '#app',
       delimiters: ['[[', ']]'],
       data() {
