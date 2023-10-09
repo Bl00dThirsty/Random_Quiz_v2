@@ -82,7 +82,10 @@ Install the required dependencies:
 ```
 pip install -r requirements.txt
 ```
-
+Install app django-extensions
+``` 
+pip install django-extensions
+```
 Set up the database:
 
 ```
