@@ -1,7 +1,7 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 
-{% block title %}  Quiz{% endblock %} 
+{% block title %}  Quiz {% endblock %} 
 
 <!-- Specific Page CSS goes HERE-->
 {% block stylesheets %}
@@ -109,20 +109,29 @@ var app = new Vue({
                 });
             },
         
-        checkAnswer(event, uid, selectedAnswer) {
+        checkAnswer(event, uid) {
+          let answerChecked = false;
           this.questions.forEach(question => {
-          if (question.uid === uid && !question.answered) {
-            question.answered = true;
-              if (selectedAnswer) {
-                if (selectedAnswer.is_correct) {
-                  console.log('reponse juste');
-                  alert('hurrrr correcte');
-                  userScore += 1;
-                } else {
-                  console.log('reponse fausse');
+            
+            const answers = this.currentQuestion.answers
+
+            if (!answerChecked){
+              for(let i=0;i < answers.length ; i++) {
+              
+                if (answers[i].answer === event.target.innerText) {
+                  if (answers[i].is_correct) {
+                    console.log('reponse juste');
+                    
+                    this.userScore += 1;
+                  } else {
+                    console.log('reponse fausse');
+                  }
+                  answerChecked = true;
+                  break;
                 }
-              }
-          }
+                
+            }
+        }
           if (question.uid !== uid) {
             question.disabled = true;
             console.log('desactiver');
@@ -133,21 +142,16 @@ var app = new Vue({
           const resultBox = document.querySelector('.result-box');
           const quizBox = document.querySelector('.quiz-box');
           if (!quizBox) {
-            console.error('Element .quiz-box introuveble')
+            console.error('Element .quiz-box introuvable')
             return;
           }
           quizBox.classList.remove('active');
           resultBox.classList.add('active');
 
           const score_text = document.querySelector('.score-text');
-          score_text.textContent = `Votre score est de ${userScore} sur ${this.questions.length}`;
+          score_text.textContent = `Votre score est de ${this.userScore} sur ${this.questions.length}`;
 
-          if(userScore < 5){
-              TryAgain.classList.add('active');
-          }
-          else{
-              TryAgain.classList.remove('active');
-          }
+          //if(this.userScore < 5){TryAgain.classList.add('active');}else{TryAgain.classList.remove('active');}
 
 
 
@@ -155,7 +159,7 @@ var app = new Vue({
           const progressValue = document.querySelector('.progress-value');
 
           let progressStartValue = -1;
-          let progressEndValue = (userScore / questions.length) * 100;
+          let progressEndValue = (this.userScore / this.questions.length) * 100;
           let speed = 20;
 
           let progress = setInterval(() => {
