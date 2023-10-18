@@ -26,7 +26,7 @@ def home(request):
 
 #================================================================
 def quiz(request):
-    
+    user_score = request.GET.get('userScore'),
     context = {'category': request.GET.get('category')}
 
     return render(request,'quiz/quiz.html', context)

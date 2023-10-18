@@ -27,6 +27,7 @@
           </div>-->
           <div class="quiz-box">
             <h1>sai lama quiz</h1>
+            
             <!--==================== QUIZ HEADER ==============-->
             <div class="quiz-header">
               <div class="timer">
@@ -59,6 +60,7 @@
                 </div>
     
                 <span class="score-text">Votre score est de {{ score }} sur 10</span>
+               
             </div>
     
               <div class="buttons">
@@ -80,7 +82,9 @@
 
     {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+     
       const quizBox = document.querySelector('.quiz-box');
       const nextBtn = document.querySelector('.next-btn');
 var app = new Vue({
@@ -116,9 +120,11 @@ var app = new Vue({
             const answers = this.currentQuestion.answers
 
             if (!answerChecked){
+             
               for(let i=0;i < answers.length ; i++) {
               
                 if (answers[i].answer === event.target.innerText) {
+                  
                   if (answers[i].is_correct) {
                     console.log('reponse juste');
                     
@@ -137,6 +143,7 @@ var app = new Vue({
             console.log('desactiver');
           }
           });
+          
         },
         showResultBox() {
           const resultBox = document.querySelector('.result-box');
@@ -197,6 +204,18 @@ var app = new Vue({
         this.getQuestions();
       }
     });
+
+    $.ajax({
+    url: '/quiz/',
+    method: 'GET',
+    data: { userScore: this.userScore },
+    success: function(response) {
+      console.log('OK');
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log('ERROR');
+    }
+  });
     </script>
   {% endblock javascripts %}
   <!--nextQuestion() {

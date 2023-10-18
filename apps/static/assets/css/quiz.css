@@ -16,7 +16,7 @@ body {
 
 body {
     color: white;
-    background: #09001d;
+    /*background: #09001d;*/
     overflow: hidden;
 }
 
@@ -45,7 +45,7 @@ body {
     left: 0%;
     /*left: -50%;*/
     width: 100%;
-    background: #09001d;
+    background: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,11 +165,12 @@ body {
 
 .answer-wrapper .form-check:hover {
     background: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
+    border-color: #c40094;
 }
 
-.answer-wrapper .form-check.disabled {
-    pointer-events: none;
+.answer-wrapper .form-check:checked {
+    background: #c40094;
+    color: #fff;
 }
 
 .quiz-box .quiz-footer {
@@ -190,12 +191,12 @@ body {
     /*display: none;*/
     width: 100px;
     height: 45px;
-    background: rgba(255, 255, 255, .1);
+    background: #c40094;
     border:  2px solid rgba(255, 255, 255, .1);
     outline: none;
     border-radius: 6px;
     font-size: 16px;
-    color: rgba(255, 255, 255, .3);
+    color: #fff;
     font-weight: 600;
     cursor: pointer;
     /*pointer-events: none;*/
@@ -209,9 +210,10 @@ body {
     color: #fff;
 }
 
-.quiz-footer .next-btn.active:hover {
-    background: #950170;
+.quiz-footer .next-btn:hover {
+    background: #f5f1f4;
     border-color: #950170;
+    color:#c40094;
 }
 
 .quiz-section .result-box {
@@ -267,7 +269,7 @@ body {
     position: absolute;
     width: 210px;
     height: 210px;
-    background: #09001d;
+    background: transparent;
     border-radius: 50%;
 }
 
@@ -317,8 +319,9 @@ body {
     transition: .5s;
 }
 .buttons .TryAgain-btn.active:hover {
-    background: #950170;
+    background: #f5f1f4;
     border-color: #950170;
+    color: #c40094;
 }
 /*.buttons button:nth-child(1):hover {
     background: #950170;
@@ -334,3 +337,49 @@ body {
     background: #c40094;
     color: #fff;
 }
+
+@media screen and (max-width: 800px) and (min-width: 300px){
+    
+
+    .home-content .start-btn {
+        width: 170px;
+    }
+    .quiz-section{ 
+      width:100%;
+      background: transparent;  
+      
+    
+    }
+    .quiz-section .quiz-box {
+        width: 100%;
+        border: 2px solid transparent;
+        background: transparent;
+    }
+    .quiz-box h1 {
+        color:#fff;
+    }
+    .quiz-header span {
+        color: #fff;
+    }
+    .quiz-header .timer .time_text{
+        color:#fff;
+    }
+    
+    
+    .result-box h2 {
+        font-size: 35px;
+        color:#ffffff;
+    }
+    .quiz-section .result-box {
+        border: 2px solid transparent;
+        background: transparent;
+    }
+    .percentage-container .score-text {
+        color: #fff;
+    }
+    .buttons .next-btn {
+        background: #fff;
+        color: #c40094;
+    }
+    
+}  

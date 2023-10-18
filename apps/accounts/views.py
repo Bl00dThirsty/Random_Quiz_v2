@@ -3,6 +3,7 @@ from .models import Candidat
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 def signup(request, *args, **kwargs):
@@ -42,4 +43,16 @@ def signup(request, *args, **kwargs):
     
        
     return render(request, 'accounts/signup.html')#1
+
+@login_required
+def retour(request):
+    try:
+        id_user = request.user.id
+        candidat = Candidat.objects.get(id=id_user)
+        id_user = id_user
+        candidat.delete()
+    except Candidat.DoesNotExist:
+        
+        print('page_not_found')  
+    return render(request, 'accounts/retour.html', {'user_id': id_user})
 # Create your views here.
