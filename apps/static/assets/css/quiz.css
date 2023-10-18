@@ -246,7 +246,7 @@ body {
 
 .result-box .percentage-container {
     width: 300px;
-    background: #09001d;
+    background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -269,7 +269,7 @@ body {
     position: absolute;
     width: 210px;
     height: 210px;
-    background: transparent;
+    background: #09001d;
     border-radius: 50%;
 }
 
@@ -305,6 +305,7 @@ body {
 }
 
 .buttons .TryAgain-btn {
+    display: none;
     width: 130px;
     height: 47px;
     background: #c40094;
@@ -318,7 +319,7 @@ body {
     cursor: pointer;
     transition: .5s;
 }
-.buttons .TryAgain-btn.active:hover {
+.buttons .TryAgain-btn:hover {
     background: #f5f1f4;
     border-color: #950170;
     color: #c40094;

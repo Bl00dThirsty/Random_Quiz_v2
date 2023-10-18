@@ -59,7 +59,7 @@
                     <span class="progress-value">0%</span>
                 </div>
     
-                <span class="score-text">Votre score est de {{ score }} sur 10</span>
+                <span class="score-text">Votre score est de {{ userScore }} sur 10</span>
                
             </div>
     
@@ -148,6 +148,7 @@ var app = new Vue({
         showResultBox() {
           const resultBox = document.querySelector('.result-box');
           const quizBox = document.querySelector('.quiz-box');
+          const TryAgain_quiz = document.querySelector('.TryAgain-btn');
           if (!quizBox) {
             console.error('Element .quiz-box introuvable')
             return;
@@ -156,7 +157,13 @@ var app = new Vue({
           resultBox.classList.add('active');
 
           const score_text = document.querySelector('.score-text');
-          score_text.textContent = `Votre score est de ${this.userScore} sur ${this.questions.length}`;
+          //score_text.textContent = `Votre score est de ${this.userScore} sur ${this.questions.length}`;
+          if(this.userScore > 4 ){
+            score_text.textContent = `Felicitation 👍 , vous avez reussi, votre score est de ${this.userScore} sur ${this.questions.length}`;
+          }else{
+             score_text.textContent =  `Malheureusement  👎 , vous n'avez pas reussi, votre score est de ${this.userScore} sur ${this.questions.length}`;
+             TryAgain_quiz.style.display = "block";
+         }
 
           //if(this.userScore < 5){TryAgain.classList.add('active');}else{TryAgain.classList.remove('active');}
 
@@ -183,6 +190,7 @@ var app = new Vue({
               }
 
           }, speed);
+          
         },
         nextQuestion() {
             const currentIndex = this.questions.indexOf(this.currentQuestion);
@@ -203,9 +211,10 @@ var app = new Vue({
       created() {
         this.getQuestions();
       }
+      
     });
 
-    $.ajax({
+  $.ajax({
     url: '/quiz/',
     method: 'GET',
     data: { userScore: this.userScore },
