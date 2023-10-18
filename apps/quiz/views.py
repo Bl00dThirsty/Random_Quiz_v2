@@ -11,3 +11,5 @@ def index(request):
 def error(request):
     return render(request, 'quiz/error.html')
  
+def paiement(request):
+    return render(request, 'quiz/paiement.html')

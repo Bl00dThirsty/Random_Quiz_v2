@@ -34,8 +34,8 @@
                 <div class="timer_sec">15</div>
               </div> 
             
-              <span class="head-score">Score: 0/10</span>
-            <div class="time_line"></div>
+              <!--<span class="head-score">Score: 0/10</span>
+            <div class="time_line"></div>-->
             </div>
             <template v-if="currentQuestion">
               <h2 class="question-text">[[currentQuestion.question]]</h2>
@@ -62,8 +62,8 @@
             </div>
     
               <div class="buttons">
-                  <button class="TryAgain-btn">Reessayer</button>
-                  <button class="goHome-btn">Acceuil</button>
+                <a href="{% url 'paiement' %}"><button class="TryAgain-btn">Réessayer</button></a>
+                <a href="{% url 'index' %}"><button class="goHome-btn">Acceuil</button></a>
               </div>
             </div>
         </section>
