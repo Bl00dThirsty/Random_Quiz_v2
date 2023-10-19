@@ -6,6 +6,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
+def validate_phone_number(phone_number):
+    # Supprimer les caractères non numériques du numéro de téléphone
+    phone_number = ''.join(filter(str.isdigit, phone_number))
+
+    # Vérifier si le numéro de téléphone est valide
+    if len(phone_number) == 9:
+        # Ajouter le préfixe "+237" et le formatage du numéro
+        formatted_phone_number = "6" + phone_number[:2] + " " + phone_number[2:4] + " " + phone_number[4:6] + " " + phone_number[6:]
+        return formatted_phone_number
+
+    return None
+
+
 def signup(request, *args, **kwargs):
 
     if request.method == 'POST':
@@ -17,6 +30,7 @@ def signup(request, *args, **kwargs):
         phone_number = request.POST['phone_number']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
+        formatted_phone_number = validate_phone_number(phone_number)
     #.signup != .create
         saved_name = request.session.get('name')
         saved_forename = request.session.get('forename')
@@ -26,21 +40,23 @@ def signup(request, *args, **kwargs):
         saved_phone = request.session.get('phone_number')
         saved_password = request.session.get('password')
 
-        if Candidat.objects.filter(name=name, forename=forename, date=date).exists():
-            message_erreur = "Vous avez deja passer le test."
-            #return render(request, 'accounts/signup.html', {'message_erreur': message_erreur})
-            return redirect('error')
+        if formatted_phone_number:
+            if Candidat.objects.filter(name=name, forename=forename, date=date).exists():
+               message_erreur = "Vous avez deja passer le test."
+               #return render(request, 'accounts/signup.html', {'message_erreur': message_erreur})
+               return redirect('error')
 
-        else:
-            newCandidat = Candidat(name=name, forename=forename, code=code,  date=date, phone_number=phone_number, password=password)
-            newCandidat.save()
-            newCandidat = User.objects.create_user(name, code, password)
-            if newCandidat:
-                login(request, newCandidat)
-                return redirect('home')
             else:
-                print('error')
-    
+                newCandidat = Candidat(name=name, forename=forename, code=code,  date=date, phone_number=phone_number, password=password)
+                newCandidat.save()
+                newCandidat = User.objects.create_user(name, code, password)
+                if newCandidat:
+                    login(request, newCandidat)
+                    return redirect('home')
+                else:
+                    print('error')
+        else:
+            return redirect('error')
        
     return render(request, 'accounts/signup.html')#1
 

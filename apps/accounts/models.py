@@ -14,7 +14,7 @@ class Candidat(models.Model):
     forename = models.CharField(max_length=100)
     code = models.CharField(max_length=100, default=True)
     date = models.DateField()
-    phone_number = models.IntegerField()
+    phone_number = models.CharField(max_length=20)
     password = models.CharField(max_length=100)
     confirm_password = models.CharField(max_length=100)
     actif = models.BooleanField(default=True)
@@ -52,3 +52,4 @@ def assigner_matricule(sender, instance, **kwargs):
 
 def generer_matricule():
     return str(uuid4().hex)
+
