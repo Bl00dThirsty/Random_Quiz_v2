@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import *
+from apps.accounts.models import Candidat
 from . import views
 import random
 import json
@@ -25,8 +26,14 @@ def home(request):
 
 
 #================================================================
+@login_required
 def quiz(request):
     user_score = request.GET.get('userScore'),
+    if request.user.is_authenticated:
+      id_user = request.user.id
+      instance = Candidat.objects.get(id=id_user)
+        
+    instance.score = user_score    
     context = {'category': request.GET.get('category')}
 
     return render(request,'quiz/quiz.html', context)

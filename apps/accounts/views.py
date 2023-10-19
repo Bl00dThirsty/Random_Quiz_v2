@@ -69,6 +69,6 @@ def retour(request):
         candidat.delete()
     except Candidat.DoesNotExist:
         
-        print('page_not_found')  
+        return redirect('error')  
     return render(request, 'accounts/retour.html', {'user_id': id_user})
 # Create your views here.

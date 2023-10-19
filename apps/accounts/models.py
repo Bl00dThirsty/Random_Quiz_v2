@@ -18,6 +18,7 @@ class Candidat(models.Model):
     password = models.CharField(max_length=100)
     confirm_password = models.CharField(max_length=100)
     actif = models.BooleanField(default=True)
+    score = models.IntegerField(default=0)
 
 
     class Meta: 
