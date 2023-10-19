@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
-    <title>QUIZZ</title>
+    <title>QUIZZ SAÏ I LAMA</title>
     <link rel="stylesheet" href="{% static 'assets/css/error.css' %}">
 
     <script>
@@ -74,15 +74,15 @@
             <section class="home">
                 <div class="home-content">
                     <h1>ERREUR</h1>
-                    <p>Vous ne pouvez pas continuer, l'erreur que vous rencontrez peut concerner ces possibilites:.</p>
+                    <p>Vous ne pouvez pas continuer, l'érreur que vous rencontrez peut concerner ces possibilités:</p>
                     <section class="option">
-                    <span>1. Vos informations n'ont pas ete remplies correctement. Entrez votre numero de telephone sous cette forme: "6 xx xx xx xx" et votre date de naissance sous cette forme: AAAA-MM-JJ</span>
-                    <span>2. Vous avez deja passez le test, desormais vous ne pouvez que payer pour recommencer <a onclick="checkout()" style="color: blue; text-decoration: underline;"> Paiement</a></span>
-                    <span>3. Si vous ne vous identifier a aucune de ces propositions veuillez nous contactez: <a href="#">sai i lama</a></span>
+                    <span>1. Vos informations n'ont pas été remplies correctement. Entrez votre numéro de téléphone sous cette forme: "6 xx xx xx xx" et votre date de naissance sous cette forme: AAAA-MM-JJ</span>
+                    <span>2. Vous avez déja passez le test, desormais vous ne pouvez que payer pour recommencer <a onclick="checkout()" style="color: blue; text-decoration: underline;"> Paiement</a></span>
+                    <span>3. Si vous ne vous identifier à aucune de ces propositions veuillez nous contactez: <a href="#" style="color: rgb(230, 14, 104); text-decoration: underline;">saÏ i lama</a></span>
                     </section>
                     <div class="btn-group">
                         <a href="{% url 'index' %}"><button class="info-btn exit-btn">Retour</button></a>
-                        <a href="{% url 'signup' %}" class="info-btn continue-btn">Reesayer</a>
+                        <a href="{% url 'signup' %}" class="info-btn continue-btn">Réesayer</a>
                     </div>
                 </div>
             </section>

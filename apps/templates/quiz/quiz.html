@@ -159,9 +159,9 @@ var app = new Vue({
           const score_text = document.querySelector('.score-text');
           //score_text.textContent = `Votre score est de ${this.userScore} sur ${this.questions.length}`;
           if(this.userScore > 4 ){
-            score_text.textContent = `Felicitation 👍 , vous avez reussi, votre score est de ${this.userScore} sur ${this.questions.length}`;
+            score_text.textContent = `Félicitation 👍 , vous avez réussi le test, votre score est de ${this.userScore} sur ${this.questions.length}`;
           }else{
-             score_text.textContent =  `Malheureusement  👎 , vous n'avez pas reussi, votre score est de ${this.userScore} sur ${this.questions.length}`;
+             score_text.textContent =  `Malheureusement  👎 , vous n'avez pas réussi le test, votre score est de ${this.userScore} sur ${this.questions.length}`;
              TryAgain_quiz.style.display = "block";
          }
 
