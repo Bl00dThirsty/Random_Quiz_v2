@@ -30,7 +30,9 @@ SECRET_KEY = 'django-insecure-+ay@f$rjoeo^2nk%7*d&e$uza7^b76xc72c3lk&ktn0@tnh3z2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.1.68',
+]
 
 
 # Application definition
@@ -139,4 +141,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'signup'
 
-SESSION_COOKIE_AGE = 1800
+SESSION_COOKIE_AGE = 2700

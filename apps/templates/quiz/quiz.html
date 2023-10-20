@@ -27,6 +27,7 @@
           </div>-->
           <div class="quiz-box">
             <h1>sai lama quiz</h1>
+            
             <!--==================== QUIZ HEADER ==============-->
             <div class="quiz-header">
               <div class="timer">
@@ -34,8 +35,8 @@
                 <div class="timer_sec">15</div>
               </div> 
             
-              <span class="head-score">Score: 0/10</span>
-            <div class="time_line"></div>
+              <!--<span class="head-score">Score: 0/10</span>
+            <div class="time_line"></div>-->
             </div>
             <template v-if="currentQuestion">
               <h2 class="question-text">[[currentQuestion.question]]</h2>
@@ -58,12 +59,13 @@
                     <span class="progress-value">0%</span>
                 </div>
     
-                <span class="score-text">Votre score est de {{ score }} sur 10</span>
+                <span class="score-text">Votre score est de {{ userScore }} sur 10</span>
+               
             </div>
     
               <div class="buttons">
-                  <button class="TryAgain-btn">Reessayer</button>
-                  <button class="goHome-btn">Acceuil</button>
+                <a href="{% url 'paiement' %}"><button class="TryAgain-btn">Réessayer</button></a>
+                <a href="{% url 'index' %}"><button class="goHome-btn">Acceuil</button></a>
               </div>
             </div>
         </section>
@@ -80,7 +82,9 @@
 
     {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+     
       const quizBox = document.querySelector('.quiz-box');
       const nextBtn = document.querySelector('.next-btn');
 var app = new Vue({
@@ -116,9 +120,11 @@ var app = new Vue({
             const answers = this.currentQuestion.answers
 
             if (!answerChecked){
+             
               for(let i=0;i < answers.length ; i++) {
               
                 if (answers[i].answer === event.target.innerText) {
+                  
                   if (answers[i].is_correct) {
                     console.log('reponse juste');
                     
@@ -137,10 +143,12 @@ var app = new Vue({
             console.log('desactiver');
           }
           });
+          
         },
         showResultBox() {
           const resultBox = document.querySelector('.result-box');
           const quizBox = document.querySelector('.quiz-box');
+          const TryAgain_quiz = document.querySelector('.TryAgain-btn');
           if (!quizBox) {
             console.error('Element .quiz-box introuvable')
             return;
@@ -149,7 +157,13 @@ var app = new Vue({
           resultBox.classList.add('active');
 
           const score_text = document.querySelector('.score-text');
-          score_text.textContent = `Votre score est de ${this.userScore} sur ${this.questions.length}`;
+          //score_text.textContent = `Votre score est de ${this.userScore} sur ${this.questions.length}`;
+          if(this.userScore > 4 ){
+            score_text.textContent = `Félicitation 👍 , vous avez réussi le test, votre score est de ${this.userScore} sur ${this.questions.length}`;
+          }else{
+             score_text.textContent =  `Malheureusement  👎 , vous n'avez pas réussi le test, votre score est de ${this.userScore} sur ${this.questions.length}`;
+             TryAgain_quiz.style.display = "block";
+         }
 
           //if(this.userScore < 5){TryAgain.classList.add('active');}else{TryAgain.classList.remove('active');}
 
@@ -176,6 +190,7 @@ var app = new Vue({
               }
 
           }, speed);
+          
         },
         nextQuestion() {
             const currentIndex = this.questions.indexOf(this.currentQuestion);
@@ -196,7 +211,21 @@ var app = new Vue({
       created() {
         this.getQuestions();
       }
+      
     });
+
+  $.ajax({
+    url: '/quiz/',
+    method: 'GET',
+    data: { userScore: this.userScore },
+    success: function(response) {
+      console.log('OK');
+      
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log('ERROR');
+    }
+  });
     </script>
   {% endblock javascripts %}
   <!--nextQuestion() {
