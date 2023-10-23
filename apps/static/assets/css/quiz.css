@@ -168,7 +168,7 @@ body {
     border-color: #c40094;
 }
 
-.answer-wrapper .form-check:checked {
+.answer-wrapper .form-check:Checked {
     background: #c40094;
     color: #fff;
 }

@@ -75,11 +75,11 @@
                 <div class="home-content">
                     <h1>ERREUR</h1>
                     <p>Vous ne pouvez pas continuer, l'érreur que vous rencontrez peut concerner ces possibilités:</p>
-                    
-                    <p>  1. Vos informations n'ont pas été remplies correctement. Entrez votre numéro de téléphone sous cette forme: "6 xx xx xx xx" et votre date de naissance sous cette forme: AAAA-MM-JJ</p>
-                    <p>  2. Vous avez déja passez le test, desormais vous ne pouvez que payer pour recommencer <a onclick="checkout()" style="color: blue; text-decoration: underline;"> Paiement</a></p>
-                    <p>  3. Si vous ne vous identifier à aucune de ces propositions veuillez nous contactez: <a href="#" style="color: rgb(230, 14, 104); text-decoration: underline;">saÏ i lama</a></p>
-                    
+                    <section class="option">
+                    <span>  1. Vos informations n'ont pas été remplies correctement. Entrez votre numéro de téléphone sous cette forme: "<strong>6xx xx xx xx</strong>" et votre date de naissance sous cette forme: <strong>AAAA-MM-JJ</strong></span>
+                    <span>  2. Vous avez déja passez le test, desormais vous ne pouvez que payer pour recommencer <a onclick="checkout()" style="color: blue; text-decoration: underline;"> Paiement</a></span>
+                    <span>  3. Si vous ne vous identifier à aucune de ces propositions veuillez nous contactez: <a href="#" style="color: blue; text-decoration: underline;">saÏ i lama</a></span>
+                    </section>
                     <div class="btn-group">
                         <a href="{% url 'index' %}" class="info-btn exit-btn">Retour</a>
                         <a href="{% url 'signup' %}" class="info-btn continue-btn">Réesayer</a>
