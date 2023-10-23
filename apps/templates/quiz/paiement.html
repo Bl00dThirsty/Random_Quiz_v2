@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <title>QUIZ saï i lama</title>
+    <link rel="stylesheet" href="{% static 'assets/css/error.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script>
+        function checkout() {
+            CinetPay.setConfig({
+                apikey: '5337111116358eef42b6448.37599996',//   YOUR APIKEY
+                site_id: '301005',//YOUR_SITE_ID
+                notify_url: 'http://mondomaine.com/notify/',
+                mode: 'PRODUCTION'
+            });
+            CinetPay.getCheckout({
+                transaction_id: Math.floor(Math.random() * 100000000).toString(),
+                amount: 3000,
+                currency: 'XAF',
+                channels: 'ALL',
+                description: 'Test de paiement',   
+                 //Fournir ces variables pour le paiements par carte bancaire
+                customer_name:"Joe",//Le nom du client
+                customer_surname:"Down",//Le prenom du client
+                customer_email: "down@test.com",//l'email du client
+                customer_phone_number: "088767611",//l'email du client
+                customer_address : "BP 0024",//addresse du client
+                customer_city: "Antananarivo",// La ville du client
+                customer_country : "CM",// le code ISO du pays
+                customer_state : "CM",// le code ISO l'état
+                customer_zip_code : "06510", // code postal
+
+            });
+            CinetPay.waitResponse(function(data) {
+                if (data.status == "REFUSED") {
+                    alert("Erreur de transaction ou solde insuffisant");
+                        window.location.reload();
+                    
+                } else if (data.status == "ACCEPTED") {
+                    alert("Votre paiement a été effectué avec succès");
+                        window.location.href = "accounts/retour.html";
+                    
+                }
+            });
+            CinetPay.onError(function(data) {
+                console.log(data);
+            });
+        }
+    </script>
+
+</head>
+<body>
+    <main class="main">
+          
+        <header class="header">
+            <h1>
+                <div class="col-xs-12">
+                    <div id="logo">
+                        <a>
+                            <img class="normal_logo" src="{% static 'assets/img/PRÉSENTATION 4G1.png' %}" alt="image"
+                                                title="" style="max-height:90px;"/> 
+                        </a>
+                    </div>
+                </div>
+            </h1>
+            
+        </header>
+           <div class="container">
+           
+            <section class="home">
+                <div class="home-content">
+                    <h1><i class="fas fa-crown"></i> 😺 {{scor}}</h1>
+                    <p>Si vous souhaitez réesayer le quiz, il faudra payer les frais s'elevant à 3000Fcfa.</p>
+                    
+                    <div class="btn-group">
+                        <a href="{% url 'index' %}"><button class="info-btn exit-btn">Acceuil</button></a>
+                        <a onclick="checkout()" style="text-decoration: underline;" class="info-btn continue-btn">Paiement</a>
+                    </div>
+                </div>
+            </section>
+           </div>
+        
+    </main>       
+</body>
+</html>
