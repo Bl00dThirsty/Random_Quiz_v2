@@ -28,12 +28,7 @@ def home(request):
 #================================================================
 @login_required
 def quiz(request):
-    user_score = request.GET.get('userScore'),
-    if request.user.is_authenticated:
-      id_user = request.user.id
-      instance = Candidat.objects.get(id=id_user)
-        
-    instance.score = user_score    
+    user_score = request.GET.get('userScore'),   
     context = {'category': request.GET.get('category')}
 
     return render(request,'quiz/quiz.html', context)

@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
-    <title>QUIZZ SAÏ I LAMA</title>
+    <title>QUIZ saï i lama</title>
     <link rel="stylesheet" href="{% static 'assets/css/error.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <script>
         function checkout() {
@@ -42,7 +43,7 @@
                     
                 } else if (data.status == "ACCEPTED") {
                     alert("Votre paiement a été effectué avec succès");
-                        window.location.href = "quiz.html";
+                        window.location.href = "accounts/retour.html";
                     
                 }
             });
@@ -73,16 +74,12 @@
            
             <section class="home">
                 <div class="home-content">
-                    <h1>ERREUR</h1>
-                    <p>Vous ne pouvez pas continuer, l'érreur que vous rencontrez peut concerner ces possibilités:</p>
-                    <section class="option">
-                    <span>  1. Vos informations n'ont pas été remplies correctement. Entrez votre numéro de téléphone sous cette forme: "<strong>6xx xx xx xx</strong>" et votre date de naissance sous cette forme: <strong>AAAA-MM-JJ</strong></span>
-                    <span>  2. Vous avez déja passez le test, desormais vous ne pouvez que payer pour recommencer <a onclick="checkout()" style="color: blue; text-decoration: underline;"> Paiement</a></span>
-                    <span>  3. Si vous ne vous identifier à aucune de ces propositions veuillez nous contactez: <a href="#" style="color: blue; text-decoration: underline;">saÏ i lama</a></span>
-                    </section>
+                    <h1><i class="fas fa-crown"></i> 😺 {{scor}}</h1>
+                    <p>Si vous souhaitez réesayer le quiz, il faudra payer les frais s'elevant à 3000Fcfa.</p>
+                    
                     <div class="btn-group">
-                        <a href="{% url 'index' %}" class="info-btn exit-btn">Retour</a>
-                        <a href="{% url 'signup' %}" class="info-btn continue-btn">Réesayer</a>
+                        <a href="{% url 'index' %}"><button class="info-btn exit-btn">Acceuil</button></a>
+                        <a onclick="checkout()" style="text-decoration: underline;" class="info-btn continue-btn">Paiement</a>
                     </div>
                 </div>
             </section>

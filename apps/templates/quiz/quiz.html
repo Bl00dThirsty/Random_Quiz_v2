@@ -35,8 +35,8 @@
                 <div class="timer_sec">15</div>
               </div> 
             
-              <!--<span class="head-score">Score: 0/10</span>
-            <div class="time_line"></div>-->
+              <span class="head-score">Score: 0/10</span>
+            <div class="time_line"></div>
             </div>
             <template v-if="currentQuestion">
               <h2 class="question-text">[[currentQuestion.question]]</h2>
@@ -113,6 +113,11 @@ var app = new Vue({
                 });
             },
         
+        headerScore() {
+          const headerScoreText = document.querySelector('.head-score');
+          headerScoreText.textContent = `Score: ${this.userScore} / ${this.questions.length}`;
+        },
+        
         checkAnswer(event, uid) {
           let answerChecked = false;
           this.questions.forEach(question => {
@@ -122,26 +127,35 @@ var app = new Vue({
             if (!answerChecked){
              
               for(let i=0;i < answers.length ; i++) {
+                
+                
               
                 if (answers[i].answer === event.target.innerText) {
                   
                   if (answers[i].is_correct) {
-                    console.log('reponse juste');
                     
+                    console.log('reponse juste');
                     this.userScore += 1;
+                    this.headerScore();
+                
+                    
                   } else {
                     console.log('reponse fausse');
+                    
                   }
                   answerChecked = true;
                   break;
                 }
                 
+                
+                //console.log('desactivons');
+                
             }
         }
-          if (question.uid !== uid) {
-            question.disabled = true;
-            console.log('desactiver');
-          }
+          //if (question.uid !== uid) {
+            //question.disabled = true;
+            //console.log('desactiver');
+          //}
           });
           
         },
@@ -201,6 +215,7 @@ var app = new Vue({
             else if (nextIndex === this.questions.length){
             this.showResultBox();
             console.log('dernière question')
+            
             } else {
               console.error('Erreur : Index invalide');
             }

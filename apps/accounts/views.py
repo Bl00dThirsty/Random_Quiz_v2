@@ -40,21 +40,24 @@ def signup(request, *args, **kwargs):
         saved_phone = request.session.get('phone_number')
         saved_password = request.session.get('password')
 
-        if formatted_phone_number:
-            if Candidat.objects.filter(name=name, forename=forename, date=date).exists():
-               message_erreur = "Vous avez deja passer le test."
-               #return render(request, 'accounts/signup.html', {'message_erreur': message_erreur})
-               return redirect('error')
+        if date:
+            if formatted_phone_number:
+                if Candidat.objects.filter(name=name, forename=forename, date=date).exists():
+                    message_erreur = "Vous avez deja passer le test."
+                    #return render(request, 'accounts/signup.html', {'message_erreur': message_erreur})
+                    return redirect('error')
 
-            else:
-                newCandidat = Candidat(name=name, forename=forename, code=code,  date=date, phone_number=phone_number, password=password)
-                newCandidat.save()
-                newCandidat = User.objects.create_user(name, code, password)
-                if newCandidat:
-                    login(request, newCandidat)
-                    return redirect('home')
                 else:
-                    print('error')
+                    newCandidat = Candidat(name=name, forename=forename, code=code,  date=date, phone_number=phone_number, password=password)
+                    newCandidat.save()
+                    newCandidat = User.objects.create_user(name, code, password)
+                    if newCandidat:
+                        login(request, newCandidat)
+                        return redirect('home')
+                    else:
+                        print('error')
+            else:
+                return redirect('error')
         else:
             return redirect('error')
        
